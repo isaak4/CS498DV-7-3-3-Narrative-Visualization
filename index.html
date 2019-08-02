@@ -9,6 +9,62 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
 </header>
 <body>
+    <script type="text/javascript">
+      var mydata;
+      var xs = d3.scaleLinear()
+      var tooltip = d3.select("#tooltip")
+      
+      async function init() {
+          await d3.csv("https://raw.githubusercontent.com/isaak4/CS498DV-7-3-3-Narrative-Visualization/master/EU-US-trade.csv")
+          .then(function(data) { mydata = data;});
+          
+          var svg = d3.select("#chart1").attr("width", 300).attr("height",150),
+              width = +svg.attr("width"),
+              height = +svg.attr("height")            
+          xs.domain(0,Math.max(mydata)).range(0, width)
+          //console.log(mydata)
+          
+          d3.select('svg').selectAll('rect').data(mydata).enter().append('rect')
+          .attr("x", function(d,i) {return i*4;})
+          .attr("width", function(d,i) {return 4;})
+          .attr("y", function(d) { return d.Value_in_euros / 1000000000;})
+          .attr("height", function(d,i) {return 100 - (d.Value_in_euros / 1000000000);})
+          .on("mouseover", function(d,i){
+              tooltip.style("opacity",1)
+              .style("left", (d3.event.pageX)+"px")
+              .style("top", (d3.event.pageY)+"px")
+              .html("Item #"+i+" is "+d.Value_in_euros);
+          })
+          .on("mouseout", function(d,i) { tooltip.style("opacity",0);});
+      }
+      
+      function click_button() {
+          var pie_data = [4,3,8,9];
+          var pie = d3.pie();
+          var arc = d3.arc().innerRadius(10).outerRadius(50).cornerRadius(5);
+          var color = ["red", "green", "blue", "orange"]
+          //var xs = d3.scaleLinear().doma
+          d3.select("#chart2")
+          //d3.select('svg')
+          .append("g")
+          .attr("transform","translate(50,50)")
+          .selectAll("path")
+          .data(pie(pie_data))
+          .enter()
+          .append("path")
+          .attr("d", arc)
+          .attr("fill", function(d,i) {return color[i];})
+          .on("mouseover", function(d,i){
+              tooltip.style("opacity",1)
+              .style("left", (d3.event.pageX)+"px")
+              .style("top", (d3.event.pageY)+"px")
+              .html("Item #"+i+" is "+d.Value_in_euros);
+          })
+          .on("mouseout", function(d,i) { tooltip.style("opacity",0);});
+          ;
+      }
+    </script>
+
     <div class="jumbotron text-center">
             <h1>Europe's innovation in numbers</h1>
             <p>What is the patent application output of each EU country in terms of the budget they spent on education, their total human resources in science and technology sectors and their gross domestic expenditure on R&D respectively?</p> 
