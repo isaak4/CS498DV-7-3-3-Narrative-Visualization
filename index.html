@@ -5,24 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
 </header>
-<body>
+<body onload="init()">
     <script type="text/javascript">
       var mydata;
       var xs = d3.scaleLinear()
       var tooltip = d3.select("#tooltip")
       
       async function init() {
-          await d3.csv("https://raw.githubusercontent.com/isaak4/CS498DV-7-3-3-Narrative-Visualization/master/EU-US-trade.csv")
-          .then(function(data) { mydata = data;});
+          await d3.csv("https://raw.githubusercontent.com/isaak4/CS498DV-7-3-3-Narrative-Visualization/master/EU28_innov.csv")
+          .then(function(d) { mydata = d;});
           
-          var svg = d3.select("#chart1").attr("width", 300).attr("height",150),
+          var svg = d3.select("#chart1"),
               width = +svg.attr("width"),
               height = +svg.attr("height")            
           xs.domain(0,Math.max(mydata)).range(0, width)
-          //console.log(mydata)
+          console.log(mydata)
+          console.log(width)
+          console.log(height)
           
           d3.select('svg').selectAll('rect').data(mydata).enter().append('rect')
           .attr("x", function(d,i) {return i*4;})
