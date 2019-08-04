@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <header>
-    <title>Europe's innovation in numbers</title>
+    <title>Europe's patent generation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -14,7 +14,6 @@
       ul {
         width: 60%;
         margin: auto;
-        color: 
       }      
       #tooltip {
         position: absolute;
@@ -37,7 +36,7 @@
       .slider {
         /* -webkit-appearance: none;  Override default CSS styles */
         appearance: none;
-        width: 50%; /* Full-width */
+        width: 20%; /* Full-width */
         height: 25px; /* Specified height */
         /* outline: none; Remove outline */
         /* opacity: 0.7; Set transparency (for mouse-over effects on hover) */
@@ -232,7 +231,7 @@
                             "%GDP spent in R&D: " + d.gerd + "<br>" +
                             "%GDP spent in education: " + d.gov_edu_exp + "<br>" +
                             "%employees in Science and Tech roles: " + d.hrst + "<br>" +
-                            "<span style=color:deepskyblue;> Click on data point to show history trail. </span>");
+                            "<span style=color:red;> Click on data point to show history trail. </span>");
             })
             .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
             .on("mousedown", function(d){
@@ -395,8 +394,8 @@
 <body onload="init()">
 
     <div class="jumbotron text-center">
-      <h1 style="font-size: 500%;">Impact of budget and resources in European countries' innovation output.</h1>
-      <p style="font-size: 200%;">Based on data from Eurostat we discuss below how does the innovation output, measured in patent applications per year, is impacted in respect with the following metrics:</p> 
+      <h1 style="font-size: 500%;">Impact of budget and resources in European countries' patent generation</h1>
+      <p style="font-size: 200%;">Based on data from Eurostat it is investigated below how does the patent output is impacted in respect to the following metrics:</p> 
       <p>
       <ul style="text-align: left; font-size: 150%;">
           <li>Total R&D expenses (as % of GDP).</li>
@@ -404,17 +403,33 @@
           <li>Human resources allocated to Science and Technology roles (as % of the active workforce).</li> 
       </ul>
       </p>
+      <p>The patent output is measured in patent applications per year and per million inhabitants.</p>
     </div>
             
     <div class="container-fluid bg-3 text-center align-text-bottom">    
+      <div class="row" style="background-color:whitesmoke;">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+          <h3>Navigation tips:</h3>
+          <ul class="text-left">
+            <li>Use the Year slider at the bottom of the page to change the year of the metrics drawn on the charts.</li>
+            <li>Hover on top of a datapoint in order to see more information on a tooltip.</li>
+            <li>Click on a data point to show the historic values for a country.</li>
+          </ul>
+          <p></p>
+        </div>
+        <div class="col-lg-1"></div>
+      </div>
+      <div class="row" style="min-height: 5em;">
+      </div>
+
       <div class="row" style="background-color:whitesmoke;">
         <div class="col-lg-4">
             <h3>Patent applications vs % of GDP expenditure on R&D.</h3>
           <p>One would expect that an increase of expenditure on R&D activities would result in increased number of patents.</p>
           <p>Well... not really so. It happens in some cases but usually not. </p>
         </div>
-        <div id="chart1" class="col-lg-8">
-        </div>
+        <div id="chart1" class="col-lg-8"></div>
       </div>
       <div class="row" style="min-height: 5em;">
 
@@ -425,8 +440,7 @@
           <p>What about the spending on education?</p>
           <p>Despite the decreasing trend on education budget, in most of the countries there has been no negative impact.</p>
         </div>
-        <div id="chart2" class="col-lg-8">
-        </div>
+        <div id="chart2" class="col-lg-8"></div>
       </div>
       <div class="row" style="min-height: 5em;">
 
@@ -437,8 +451,7 @@
           <p>Finally, the general trend of the increased workforce proportion working on Science and Tech jobs does not seem to produce more patents.</p>
           <p>Sometimes the opposite! Have a look in the graph.</p>
         </div>
-        <div id="chart3" class="col-lg-8">
-        </div>
+        <div id="chart3" class="col-lg-8"></div>
       </div>
       <div class="row">
           <div class="col-lg-12">
@@ -447,11 +460,13 @@
 
       </div>
       <div class="row" style="background-color:whitesmoke;">
-        <div class="col-lg-12">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
           <h3>What is the conclusion?</h3>
           <p>It seems that the discussed metrics cannot adequately explain the patent productivity in the country level.</p>
           <p>Most probably there are many other variables that influences the patent productivity.  </p>
         </div>
+        <div class="col-lg-3"></div>
       </div>
       <div class="row" style="background-color:whitesmoke; min-height: 100px;"></div>
       <footer class="fixed-bottom">
